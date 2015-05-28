@@ -54,7 +54,7 @@ class GoatPlugin(Plugin):
 
     def options(self, parser, env=os.environ):
         parser.add_option('', '--no-goat',
-                          help='do not use the goat', 
+                          help='do not use the goat',
                           action='store_true'
                           )
 
@@ -62,8 +62,7 @@ class GoatPlugin(Plugin):
         self.enabled = not options.no_goat
 
     def begin(self):
-        sys.stderr.write("{goat}\n".format(goat=random.choice(GOATS)))
+        sys.stderr.write("%(goat)s\n" % {'goat': random.choice(GOATS)})
 
 if __name__ == '__main__':
     run(plugins=[GoatPlugin()])
-    
