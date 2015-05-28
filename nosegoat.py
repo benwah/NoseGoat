@@ -5,25 +5,48 @@ Licensed under PSF license
 """
 import os
 import sys
+import random
 
 from nose.plugins import Plugin
 from nose.plugins.plugintest import run_buffered as run
 
-GOAT_1 = r"""
+GOATS = [
+    r"""
+   _))
+  > *\     _~
+  `;'\\__-' \_
+     | )  _ \ \
+    / / ``   w w
+   w w""",
+    r"""
  /\\_//\
  \(o o)/____
    \-/      \
     \ ____, /
-    //    || 
-   ^^     ^^"""
+    //    ||
+   ^^     ^^""",
+    r"""
+        /\\//\
+   _____\(oo)/
+  /     --\/
+  \  ____||
+   ||    ||
+   ^^    ^^""",
+    r'''
+  (_(
+  /_/'_____/)
+  "  |      |
+     |""""""|''',
+    r"""
+          ,,~~--___---,
+         /            .~,
+   /  _,~             )
+  (_-(~)   ~, ),,,(  /'
+   Z6  .~`' ||     \ |
+   /_,/     ||      ||
+~~~~~~~~~~~~W`~~~~~~W`~~~~~~~~~"""
+]
 
-GOAT_2 = r"""
-         /\\//\ 
-    _____\(oo)/ 
-   /     --\/   
-   \  ____||    
-    ||    ||    
-    ^^    ^^"""
 
 class GoatPlugin(Plugin):
     enabled = True
@@ -39,7 +62,7 @@ class GoatPlugin(Plugin):
         self.enabled = not options.no_goat
 
     def begin(self):
-        sys.stderr.write(GOAT_1)
+        sys.stderr.write("{goat}\n".format(goat=random.choice(GOATS)))
 
 if __name__ == '__main__':
     run(plugins=[GoatPlugin()])
